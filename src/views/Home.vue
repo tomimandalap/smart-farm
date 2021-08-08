@@ -105,41 +105,33 @@
       </v-container>
     </section>
 
-    <section class="teams text-center d-sm-block d-none">
+    <section class="teams text-center ">
       <v-container fluid>
         <h2 class="font-weight-medium" style="margin: 80px 0">
           Collaboration Team
         </h2>
-        <v-row
-          justify="space-around"
-          align="center"
-          style="height: 300px; margin: -30px 0 30px 0"
-        >
-          <v-btn outlined color="dark" icon>
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
-
-          <div v-for="(items, i) in teams" :key="i" class="pa-2">
-            <v-avatar v-if="i % 2 != 0" width="200" height="200">
-              <v-img
-                :src="require(`@/assets/images/${items.image}`)"
-                :alt="items.name"
-              />
-            </v-avatar>
-
-            <v-avatar v-else width="150" height="150">
-              <v-img
-                :src="require(`@/assets/images/${items.image}`)"
-                :alt="items.name"
-              />
-            </v-avatar>
-            <h4 class="mt-5">{{ items.name }}</h4>
-            <small>{{ items.profesi }}</small>
-          </div>
-
-          <v-btn outlined color="dark" icon>
-            <v-icon>mdi-chevron-right</v-icon>
-          </v-btn>
+        <v-row style="margin: -30px 0 30px 0">
+          <v-col
+            v-for="(items, i) in teams"
+            :key="i"
+            lg="4"
+            md="4"
+            sm="6"
+            cols="12"
+          >
+            <v-card elevation="0" outlined class="pa-2">
+              <v-avatar width="200" height="200">
+                <v-img
+                  :src="require(`@/assets/images/${items.image}`)"
+                  :alt="items.name"
+                />
+              </v-avatar>
+              <v-card-title class="mt-2 d-block mx-auto">
+                {{ items.name }}
+              </v-card-title>
+              <v-card-subtitle>{{ items.profesi }}</v-card-subtitle>
+            </v-card>
+          </v-col>
         </v-row>
       </v-container>
     </section>
