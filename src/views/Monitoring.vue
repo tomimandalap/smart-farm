@@ -20,10 +20,10 @@
               <v-card-title
                 :class="
                   i == 0
-                    ? 'blue--text d-block mx-auto f-xl'
+                    ? 'orange--text d-block mx-auto f-xl'
                     : i == 1
-                    ? 'green--text d-block mx-auto f-xl'
-                    : 'orange--text d-block mx-auto f-xl'
+                    ? 'blue--text d-block mx-auto f-xl'
+                    : 'green--text d-block mx-auto f-xl'
                 "
               >
                 {{ items.label }}
@@ -31,10 +31,10 @@
               <v-card-text
                 :class="
                   i == 0
-                    ? 'blue--text f-card-text my-6'
+                    ? 'orange--text f-card-text my-6'
                     : i == 1
-                    ? 'green--text f-card-text my-6'
-                    : 'orange--text f-card-text my-6'
+                    ? 'blue--text f-card-text my-6'
+                    : 'green--text f-card-text my-6'
                 "
               >
                 {{ items.value[items.value.length - 1]
@@ -43,10 +43,10 @@
               <v-card-subtitle
                 :class="
                   i == 0
-                    ? 'blue--text'
+                    ? 'orange--text'
                     : i == 1
-                    ? 'green--text'
-                    : 'orange--text'
+                    ? 'blue--text'
+                    : 'green--text'
                 "
               >
                 Updated 1 minutes ago
@@ -76,10 +76,10 @@
               <v-card-title
                 :class="
                   i == 0
-                    ? 'blue--text'
+                    ? 'orange--text'
                     : i == 1
-                    ? 'green--text'
-                    : 'orange--text'
+                    ? 'blue--text'
+                    : 'green--text'
                 "
               >
                 {{ items.label }}
@@ -90,7 +90,7 @@
                 <v-sheet color="white">
                   <v-sparkline
                     :value="items.value"
-                    :color="i == 0 ? 'blue' : i == 1 ? 'green' : 'orange'"
+                    :color="i == 0 ? 'orange' : i == 1 ? 'blue' : 'green'"
                     height="100"
                     padding="16"
                     line-width="2"
