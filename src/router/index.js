@@ -33,19 +33,20 @@ const router = new VueRouter({
   routes,
 })
 
-// router.beforeEach((to, from, next) => {
-//   window.scrollTo(0, 0)
-//   if (to.name) {
-//     if (window.navigator.onLine) {
-//       return next('/timeout')
-//       // router.push('/timeout').catch(() => {})
-//     } else {
-//       return next()
-//     }
-//   } else {
-//     return next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0)
+  if (to.name) {
+    return next()
+    // if (window.navigator.onLine) {
+    //   return next('/timeout')
+    //   // router.push('/timeout').catch(() => {})
+    // } else {
+    //   return next()
+    // }
+  } else {
+    return next()
+  }
+})
 
 const DEFAULT_TITLE = 'Smart Farm'
 router.afterEach(to => {
