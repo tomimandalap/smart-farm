@@ -2,7 +2,7 @@
   <v-img src="../assets/images/bg-dasboard.jpg" style="height: 100vh">
     <v-container>
       <v-row class="pl-3 pt-0 pb-0 pr-0 mt-n6">
-        <v-col lg="4" md="4" sm="5" cols="6">
+        <v-col lg="4" md="5" sm="6" cols="8">
           <v-card
             color="#71B22F88"
             class="rounded-0 text-center pt-8 pb-8 pl-3 pr-3"
