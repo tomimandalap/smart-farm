@@ -35,6 +35,10 @@ Website monitoring temperature, humidity and Soil Moisture based internet of thi
 
 ---
 
+## ```Others```
+- [Thingspeak](https://thingspeak.com/channels/1468035)
+- [indosmartfarm](https://indosmartfarm.netlify.app/)
+
 ## ```UI/UX```
 ![UI_UX_SMART_FARM](https://user-images.githubusercontent.com/43200304/128620487-51306315-460d-40a8-8c99-b47071680fe8.PNG)
 
