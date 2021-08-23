@@ -1,6 +1,7 @@
 <template>
   <div>
     <Jumbotron :title="title" :powerby="powerby" />
+
     <section class="realtime">
       <v-container fluid>
         <h2 class="font-weight-medium" style="margin-top: 70px">
@@ -16,11 +17,18 @@
                 Temperature
               </v-card-title>
               <v-card-text class="orange--text f-card-text my-6">
-                {{
-                  dataTemp.length != 0
-                    ? dataTemp[dataTemp.length - 1].field1
-                    : 0
-                }}&deg;C
+                <v-progress-circular
+                  v-if="loading"
+                  indeterminate
+                  color="orange"
+                ></v-progress-circular>
+                <span v-else>
+                  {{
+                    dataTemp.length != 0
+                      ? dataTemp[dataTemp.length - 1].field1
+                      : 0
+                  }}&deg;C
+                </span>
               </v-card-text>
               <v-card-subtitle
                 class="orange--text
@@ -29,7 +37,7 @@
                 Updated
                 {{
                   dataTemp.length != 0
-                    ? dataTemp[dataTemp.length - 1].created_at
+                    ? setFormatDate(dataTemp[dataTemp.length - 1].created_at)
                     : '1 minute ago'
                 }}
               </v-card-subtitle>
@@ -45,11 +53,18 @@
                 Humidity
               </v-card-title>
               <v-card-text class="green--text f-card-text my-6">
-                {{
-                  dataHumd.length != 0
-                    ? dataHumd[dataHumd.length - 1].field2
-                    : 0
-                }}%
+                <v-progress-circular
+                  v-if="loading"
+                  indeterminate
+                  color="green"
+                ></v-progress-circular>
+                <span v-else>
+                  {{
+                    dataHumd.length != 0
+                      ? dataHumd[dataHumd.length - 1].field2
+                      : 0
+                  }}%
+                </span>
               </v-card-text>
               <v-card-subtitle
                 class="green--text
@@ -58,7 +73,7 @@
                 Updated
                 {{
                   dataHumd.length != 0
-                    ? dataHumd[dataHumd.length - 1].created_at
+                    ? setFormatDate(dataHumd[dataHumd.length - 1].created_at)
                     : '1 minute ago'
                 }}
               </v-card-subtitle>
@@ -74,11 +89,18 @@
                 Soil Moisture
               </v-card-title>
               <v-card-text class="blue--text f-card-text my-6">
-                {{
-                  dataSoil.length != 0
-                    ? dataSoil[dataSoil.length - 1].field3
-                    : 0
-                }}%
+                <v-progress-circular
+                  v-if="loading"
+                  indeterminate
+                  color="blue"
+                ></v-progress-circular>
+                <span v-else>
+                  {{
+                    dataSoil.length != 0
+                      ? dataSoil[dataSoil.length - 1].field3
+                      : 0
+                  }}%
+                </span>
               </v-card-text>
               <v-card-subtitle
                 class="blue--text
@@ -87,7 +109,7 @@
                 Updated
                 {{
                   dataSoil.length != 0
-                    ? dataSoil[dataSoil.length - 1].created_at
+                    ? setFormatDate(dataSoil[dataSoil.length - 1].created_at)
                     : '1 minute ago'
                 }}
               </v-card-subtitle>
@@ -254,9 +276,11 @@
 <script>
 import Jumbotron from '@/components/Jumbotron'
 import Footer from '@/components/Footer'
+import moment from '@/helpers/moment'
 export default {
   name: 'Monitoring',
   components: { Jumbotron, Footer },
+  mixins: [moment],
   data: () => ({
     title: 'Monitoring',
     powerby: 'Power by arduino and PCBWay',
@@ -272,6 +296,9 @@ export default {
     },
     dataSoil() {
       return this.$store.state.dataSoil
+    },
+    loading() {
+      return this.$store.state.loading
     },
   },
   watch: {
@@ -291,6 +318,7 @@ export default {
       this.getData()
     },
     async getData() {
+      this.$store.commit('setloading', true)
       await this.$store.dispatch('getTemperature')
       await this.$store.dispatch('getHumd')
       await this.$store.dispatch('getSoil')

@@ -11,6 +11,7 @@ export default new Vuex.Store({
     dataTemp: [],
     dataHumd: [],
     dataSoil: [],
+    loading: false,
   },
   mutations: {
     setTemp(state, payload) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     setSoil(state, payload) {
       state.dataSoil = payload
     },
+    setloading(state, payload) {
+      state.loading = payload
+    },
   },
   actions: {
     getTemperature(context) {
@@ -32,11 +36,13 @@ export default new Vuex.Store({
         .then(res => {
           // console.log(res.data)
           context.commit('setTemp', res.data.feeds)
+          context.commit('setloading', false)
           return true
         })
         .catch(err => {
           console.log(err.response)
           context.commit('setTemp', [])
+          context.commit('setloading', false)
           return false
         })
     },
@@ -48,11 +54,13 @@ export default new Vuex.Store({
         .then(res => {
           // console.log(res.data)
           context.commit('setHumd', res.data.feeds)
+          context.commit('setloading', false)
           return true
         })
         .catch(err => {
           console.log(err.response)
           context.commit('setHumd', [])
+          context.commit('setloading', false)
           return false
         })
     },
@@ -64,11 +72,13 @@ export default new Vuex.Store({
         .then(res => {
           // console.log(res.data)
           context.commit('setSoil', res.data.feeds)
+          context.commit('setloading', false)
           return true
         })
         .catch(err => {
           console.log(err.response)
           context.commit('setSoil', [])
+          context.commit('setloading', false)
           return false
         })
     },
